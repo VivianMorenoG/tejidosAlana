@@ -1,23 +1,35 @@
+/* ============================================
+   TEJIDOS ALANA — HOJA DE ESTILOS COMPLETA
+   Paleta de 5 colores extraída del logo
+   ============================================ */
+
 /* ===== VARIABLES GLOBALES ===== */
 :root {
-    /* Colores cálidos del logo Tejidos Alana */
-    --color-primario: #5C3D2E;        /* Marrón oscuro - textos */
-    --color-secundario: #8B6B4F;      /* Marrón medio - elementos */
-    --color-terciario: #C67A4E;       /* Naranja terracota - acentos */
-    --color-fondo: #FFF9F0;           /* Crema claro - fondo principal */
-    --color-fondo-sec: #F5E6D3;       /* Beige cálido - secciones */
-    --color-claro: #FFFFFF;           /* Blanco - tarjetas */
-    --color-texto: #3D2B1F;           /* Marrón oscuro - textos */
-    --color-destacado: #D4A373;       /* Beige dorado - detalles */
-    
-    /* Tipografía */
+    /* ===== PALETA DE 5 COLORES ===== */
+    --color-marron-profundo: #5C3D2E;   /* Textos y títulos principales */
+    --color-marron-medio:    #8B6B4F;   /* Elementos secundarios */
+    --color-terracota:       #C67A4E;   /* Acentos, botones y enlaces */
+    --color-crema:           #FFF9F0;   /* Fondo principal */
+    --color-beige-calido:    #F5E6D3;   /* Secciones alternas */
+
+    /* ===== ALIAS ===== */
+    --color-primario:   var(--color-marron-profundo);
+    --color-secundario: var(--color-marron-medio);
+    --color-acento:     var(--color-terracota);
+    --color-fondo:      var(--color-crema);
+    --color-fondo-sec:  var(--color-beige-calido);
+    --color-texto:      var(--color-marron-profundo);
+
+    /* ===== TIPOGRAFÍA ===== */
     --fuente-principal: 'Georgia', 'Times New Roman', serif;
     --fuente-secundaria: 'Segoe UI', Roboto, sans-serif;
     --tamano-hero: clamp(2.5rem, 8vw, 4.5rem);
-    
-    /* Espaciado */
+
+    /* ===== ESPACIADO ===== */
     --espaciado-seccion: 5rem 2rem;
     --borde-redondeado: 1.5rem;
+    --sombra-suave: 0 4px 16px rgba(92, 61, 46, 0.08);
+    --sombra-hover: 0 12px 32px rgba(92, 61, 46, 0.15);
 }
 
 /* ===== RESET / BOX MODEL MODERNO ===== */
@@ -31,7 +43,7 @@
 
 html {
     scroll-behavior: smooth;
-    scroll-padding-top: 80px;
+    scroll-padding-top: 90px;
 }
 
 body {
@@ -42,17 +54,67 @@ body {
     min-height: 100vh;
 }
 
-/* ===== HEADER FIJO CON LOGO ===== */
+/* ===== TIPOGRAFÍA GENERAL ===== */
+h1, h2, h3, h4 {
+    font-family: var(--fuente-principal);
+    color: var(--color-primario);
+    line-height: 1.2;
+}
+
+h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-acento), var(--color-secundario));
+    border-radius: 2px;
+}
+
+h3 {
+    font-size: 1.5rem;
+    color: var(--color-secundario);
+}
+
+p {
+    margin-bottom: 1rem;
+}
+
+a {
+    color: var(--color-acento);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+a:hover {
+    color: var(--color-primario);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* ===== HEADER FIJO ===== */
 header {
-    background: var(--color-fondo);
-    padding: 0.5rem 2rem;
+    background: var(--color-crema);
+    padding: 0.75rem 2rem;
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     z-index: 1000;
     box-shadow: 0 2px 16px rgba(92, 61, 46, 0.1);
-    border-bottom: 3px solid var(--color-terciario);
+    border-bottom: 3px solid var(--color-acento);
 }
 
 nav {
@@ -64,13 +126,15 @@ nav {
     flex-wrap: wrap;
 }
 
+/* Logo en el nav */
 .nav-logo {
     display: flex;
     align-items: center;
+    text-decoration: none;
 }
 
 .logo-nav {
-    height: 50px;
+    height: 55px;
     width: auto;
     transition: transform 0.3s ease;
 }
@@ -79,6 +143,7 @@ nav {
     transform: scale(1.05);
 }
 
+/* Enlaces del nav */
 .nav-links {
     list-style: none;
     display: flex;
@@ -92,7 +157,7 @@ nav {
     text-decoration: none;
     font-weight: 600;
     font-size: 1rem;
-    padding: 0.4rem 0.8rem;
+    padding: 0.4rem 0.9rem;
     border-radius: 2rem;
     transition: all 0.3s ease;
     font-family: var(--fuente-principal);
@@ -100,91 +165,95 @@ nav {
 }
 
 .nav-links a:hover {
-    background: var(--color-terciario);
-    color: var(--color-claro);
+    background-color: var(--color-primario);
+    color: var(--color-crema);
     transform: translateY(-2px);
 }
 
 /* ===== HERO ===== */
 #inicio {
     text-align: center;
-    padding: 8rem 2rem 5rem;
+    padding: 9rem 2rem 5rem;
     margin: 0 auto 2rem auto;
     min-height: 90vh;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: relative;
-    background: linear-gradient(135deg, var(--color-fondo), var(--color-fondo-sec));
+    background: linear-gradient(135deg, var(--color-crema), var(--color-beige-calido));
     border-radius: 0 0 3rem 3rem;
+    position: relative;
+    overflow: hidden;
 }
 
 .logo-hero {
-    max-width: 200px;
+    max-width: 220px;
     height: auto;
     margin-bottom: 1.5rem;
     animation: fadeInDown 1s ease;
 }
 
 #inicio h1 {
-    font-family: var(--fuente-principal);
     font-size: var(--tamano-hero);
     color: var(--color-primario);
-    margin-bottom: 0.25rem;
+    letter-spacing: 3px;
+    margin-bottom: 0.5rem;
 }
 
-#inicio .eslogan {
+.eslogan {
     font-size: 1.4rem;
     color: var(--color-secundario);
     font-style: italic;
+    font-weight: 600;
     margin-bottom: 1.5rem;
+    letter-spacing: 1px;
 }
 
 #inicio blockquote {
     max-width: 600px;
     padding: 1rem 2rem;
-    background: var(--color-claro);
+    background: var(--color-crema);
     border-radius: 1rem;
-    border-left: 6px solid var(--color-terciario);
+    border-left: 6px solid var(--color-acento);
     margin: 0.5rem auto 2rem;
-    box-shadow: 0 4px 12px rgba(92, 61, 46, 0.06);
+    box-shadow: var(--sombra-suave);
 }
 
 #inicio blockquote p {
-    font-size: 1.15rem;
     font-family: var(--fuente-principal);
     font-style: italic;
+    font-size: 1.15rem;
     color: var(--color-primario);
+    margin-bottom: 0.25rem;
 }
 
 #inicio blockquote cite {
     display: block;
     font-size: 0.9rem;
     color: var(--color-secundario);
-    margin-top: 0.25rem;
     font-style: normal;
 }
 
 .btn-hero {
     display: inline-block;
-    background: var(--color-terciario);
-    color: var(--color-claro);
+    background-color: var(--color-acento);
+    color: #FFFFFF; /*Blanco puro*/
     padding: 0.9rem 2.8rem;
     border-radius: 3rem;
     text-decoration: none;
     font-weight: 700;
     font-size: 1.1rem;
     transition: all 0.3s ease;
-    box-shadow: 0 4px 16px rgba(198, 122, 78, 0.3);
+    box-shadow: 0 4px 16px rgba(198, 122, 78, 0.35);
     font-family: var(--fuente-principal);
     letter-spacing: 1px;
 }
 
 .btn-hero:hover {
+    background-color: var(--color-primario);
+    color: var(--color-crema);
     transform: translateY(-3px) scale(1.03);
-    box-shadow: 0 8px 24px rgba(198, 122, 78, 0.4);
-    background: var(--color-primario);
+    box-shadow: 0 8px 24px rgba(92, 61, 46, 0.35);
 }
 
 @keyframes fadeInDown {
@@ -203,46 +272,20 @@ section {
     padding: var(--espaciado-seccion);
     max-width: 1200px;
     margin: 0 auto;
-    scroll-margin-top: 80px;
-}
-
-h2 {
-    font-family: var(--fuente-principal);
-    font-size: 2.5rem;
-    color: var(--color-primario);
-    margin-bottom: 1.5rem;
-    position: relative;
-    display: inline-block;
-}
-
-h2::after {
-    content: "";
-    position: absolute;
-    bottom: -8px;
-    left: 0;
-    width: 60px;
-    height: 4px;
-    background: linear-gradient(90deg, var(--color-terciario), var(--color-destacado));
-    border-radius: 2px;
-}
-
-h3 {
-    font-family: var(--fuente-principal);
-    color: var(--color-secundario);
+    scroll-margin-top: 90px;
 }
 
 /* ===== NOSOTROS ===== */
 #nosotros {
-    background: var(--color-claro);
+    background-color: var(--color-crema);
     border-radius: var(--borde-redondeado);
     padding: 3rem;
     margin-bottom: 3rem;
-    box-shadow: 0 4px 20px rgba(92, 61, 46, 0.06);
+    box-shadow: var(--sombra-suave);
 }
 
 #nosotros p {
     font-size: 1.1rem;
-    margin-bottom: 1rem;
     max-width: 800px;
 }
 
@@ -261,7 +304,7 @@ h3 {
 }
 
 .valores li {
-    background: var(--color-fondo-sec);
+    background: var(--color-beige-calido);
     padding: 1.5rem;
     border-radius: 1rem;
     border: 2px solid transparent;
@@ -269,8 +312,9 @@ h3 {
 }
 
 .valores li:hover {
-    border-color: var(--color-terciario);
+    border-color: var(--color-acento);
     transform: translateY(-4px);
+    box-shadow: var(--sombra-suave);
 }
 
 .valores .icono {
@@ -299,8 +343,7 @@ h3 {
 
 #productos > p {
     font-size: 1.1rem;
-    color: var(--color-texto);
-    opacity: 0.8;
+    opacity: 0.85;
     margin-bottom: 2rem;
 }
 
@@ -312,18 +355,18 @@ h3 {
 }
 
 .productos-grid li {
-    background: var(--color-claro);
+    background: var(--color-crema);
     border-radius: var(--borde-redondeado);
     overflow: hidden;
-    box-shadow: 0 4px 16px rgba(92, 61, 46, 0.06);
+    box-shadow: var(--sombra-suave);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
     border: 2px solid transparent;
 }
 
 .productos-grid li:hover {
     transform: translateY(-8px);
-    box-shadow: 0 12px 32px rgba(92, 61, 46, 0.12);
-    border-color: var(--color-destacado);
+    box-shadow: var(--sombra-hover);
+    border-color: var(--color-acento);
 }
 
 .productos-grid li figure {
@@ -334,8 +377,8 @@ h3 {
     width: 100%;
     height: 260px;
     object-fit: cover;
-    display: block;
     transition: transform 0.4s ease;
+    background: var(--color-beige-calido);
 }
 
 .productos-grid li:hover img {
@@ -344,7 +387,6 @@ h3 {
 
 .productos-grid li figcaption {
     padding: 1.5rem;
-    background: var(--color-claro);
 }
 
 .productos-grid li figcaption h3 {
@@ -354,9 +396,8 @@ h3 {
 }
 
 .productos-grid li figcaption p {
-    color: var(--color-texto);
-    opacity: 0.8;
     font-size: 0.95rem;
+    opacity: 0.85;
     margin-bottom: 0.75rem;
 }
 
@@ -365,7 +406,7 @@ h3 {
     font-family: var(--fuente-principal);
     font-size: 1.3rem;
     font-weight: 700;
-    color: var(--color-terciario);
+    color: var(--color-acento);
 }
 
 .etiqueta {
@@ -374,7 +415,7 @@ h3 {
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 1px;
-    background: var(--color-fondo-sec);
+    background: var(--color-beige-calido);
     color: var(--color-primario);
     padding: 0.2rem 0.8rem;
     border-radius: 2rem;
@@ -384,7 +425,7 @@ h3 {
 
 /* ===== CONTACTO ===== */
 #contacto {
-    background: var(--color-fondo-sec);
+    background: var(--color-beige-calido);
     border-radius: var(--borde-redondeado);
     padding: 3rem;
     margin-bottom: 3rem;
@@ -397,12 +438,12 @@ h3 {
 
 address {
     font-style: normal;
-    background: var(--color-claro);
+    background: var(--color-crema);
     padding: 2rem;
     border-radius: 1rem;
-    border-left: 6px solid var(--color-terciario);
+    border-left: 6px solid var(--color-acento);
     margin-bottom: 1.5rem;
-    box-shadow: 0 2px 12px rgba(92, 61, 46, 0.06);
+    box-shadow: var(--sombra-suave);
 }
 
 address p {
@@ -412,13 +453,11 @@ address p {
 
 address a {
     color: var(--color-primario);
-    text-decoration: none;
     font-weight: 600;
-    transition: color 0.3s ease;
 }
 
 address a:hover {
-    color: var(--color-terciario);
+    color: var(--color-acento);
     text-decoration: underline;
 }
 
@@ -435,40 +474,34 @@ address a:hover {
     text-decoration: none;
     font-weight: 500;
     padding: 0.6rem 1.8rem;
-    background: var(--color-claro);
+    background: var(--color-crema);
     border-radius: 2rem;
     transition: all 0.3s ease;
     display: inline-block;
-    border: 2px solid var(--color-destacado);
+    border: 2px solid var(--color-acento);
 }
 
 .social-links li a:hover {
-    background: var(--color-terciario);
-    color: var(--color-claro);
-    border-color: var(--color-terciario);
+    background: var(--color-acento);
+    color: var(--color-primario);
     transform: scale(1.05);
 }
 
 /* ===== FOOTER ===== */
 footer {
     background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
-    color: var(--color-claro);
+    color: var(--color-crema);
     text-align: center;
     padding: 2.5rem 2rem;
     border-radius: 3rem 3rem 0 0;
 }
 
 .logo-footer {
-    max-width: 80px;
+    max-width: 90px;
     height: auto;
-    margin-bottom: 0.75rem;
-    /* Cambia filter a: */
-    /* filter: none;  si el logo ya es blanco */
-    background: rgba(255,255,255,0.1);
-    border-radius: 50%;
-    padding: 0.5rem;
+    margin: 0 auto 0.75rem;
+    display: block;
 }
-
 
 footer p:first-of-type {
     font-size: 1.1rem;
@@ -488,8 +521,7 @@ footer p:last-child {
 }
 
 footer p:last-child a {
-    color: var(--color-claro);
-    text-decoration: none;
+    color: var(--color-crema);
     opacity: 0.7;
     transition: opacity 0.3s ease;
 }
@@ -510,7 +542,7 @@ footer p:last-child a:hover {
     }
 
     .logo-nav {
-        height: 40px;
+        height: 42px;
     }
 
     .nav-links {
@@ -529,14 +561,14 @@ footer p:last-child a:hover {
     }
 
     .logo-hero {
-        max-width: 140px;
+        max-width: 150px;
     }
 
     #inicio h1 {
         font-size: 2.5rem;
     }
 
-    #inicio .eslogan {
+    .eslogan {
         font-size: 1.1rem;
     }
 
@@ -546,7 +578,7 @@ footer p:last-child a:hover {
 
     section {
         padding: 2.5rem 1.25rem;
-        scroll-margin-top: 120px;
+        scroll-margin-top: 130px;
     }
 
     h2 {
@@ -589,6 +621,10 @@ footer p:last-child a:hover {
         font-size: 2rem;
     }
 
+    .logo-hero {
+        max-width: 120px;
+    }
+
     .productos-grid {
         grid-template-columns: 1fr;
     }
@@ -601,8 +637,43 @@ footer p:last-child a:hover {
         width: 100%;
         text-align: center;
     }
+}
+/* ===== BOTÓN MÁS INFORMACIÓN (paleta Tejidos Alana) ===== */
+.btn-info {
+    display: inline-block;
+    margin-top: 1rem;
+    padding: 0.6rem 1.5rem;
+    background-color: var(--color-acento);          /* Terracota #C67A4E */
+    color: #FFFFFF;                       /* Blanco puro*/
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(198, 122, 78, 0.25); /* Sombra terracota */
+    font-family: var(--fuente-secundaria);
+    letter-spacing: 0.5px;
+    text-align: center;
+    width: 100%;
+    box-sizing: border-box;
+    border: 2px solid var(--color-acento);
+}
 
-    .logo-hero {
-        max-width: 100px;
+.btn-info:hover {
+    background-color: var(--color-primario);         /* Marrón profundo #5C3D2E */
+    color: var(--color-crema);
+    border-color: var(--color-primario);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(92, 61, 46, 0.35);   /* Sombra marrón */
+}
+
+.btn-info:active {
+    transform: translateY(-1px);
+}
+
+@media (max-width: 480px) {
+    .btn-info {
+        font-size: 0.9rem;
+        padding: 0.55rem 1.2rem;
     }
 }
