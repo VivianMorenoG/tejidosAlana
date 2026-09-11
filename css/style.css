@@ -1,0 +1,608 @@
+/* ===== VARIABLES GLOBALES ===== */
+:root {
+    /* Colores cálidos del logo Tejidos Alana */
+    --color-primario: #5C3D2E;        /* Marrón oscuro - textos */
+    --color-secundario: #8B6B4F;      /* Marrón medio - elementos */
+    --color-terciario: #C67A4E;       /* Naranja terracota - acentos */
+    --color-fondo: #FFF9F0;           /* Crema claro - fondo principal */
+    --color-fondo-sec: #F5E6D3;       /* Beige cálido - secciones */
+    --color-claro: #FFFFFF;           /* Blanco - tarjetas */
+    --color-texto: #3D2B1F;           /* Marrón oscuro - textos */
+    --color-destacado: #D4A373;       /* Beige dorado - detalles */
+    
+    /* Tipografía */
+    --fuente-principal: 'Georgia', 'Times New Roman', serif;
+    --fuente-secundaria: 'Segoe UI', Roboto, sans-serif;
+    --tamano-hero: clamp(2.5rem, 8vw, 4.5rem);
+    
+    /* Espaciado */
+    --espaciado-seccion: 5rem 2rem;
+    --borde-redondeado: 1.5rem;
+}
+
+/* ===== RESET / BOX MODEL MODERNO ===== */
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    font-family: var(--fuente-secundaria);
+    background-color: var(--color-fondo);
+    color: var(--color-texto);
+    line-height: 1.6;
+    min-height: 100vh;
+}
+
+/* ===== HEADER FIJO CON LOGO ===== */
+header {
+    background: var(--color-fondo);
+    padding: 0.5rem 2rem;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 16px rgba(92, 61, 46, 0.1);
+    border-bottom: 3px solid var(--color-terciario);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+}
+
+.nav-logo {
+    display: flex;
+    align-items: center;
+}
+
+.logo-nav {
+    height: 50px;
+    width: auto;
+    transition: transform 0.3s ease;
+}
+
+.logo-nav:hover {
+    transform: scale(1.05);
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    padding: 0.4rem 0.8rem;
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+    font-family: var(--fuente-principal);
+    letter-spacing: 0.5px;
+}
+
+.nav-links a:hover {
+    background: var(--color-terciario);
+    color: var(--color-claro);
+    transform: translateY(-2px);
+}
+
+/* ===== HERO ===== */
+#inicio {
+    text-align: center;
+    padding: 8rem 2rem 5rem;
+    margin: 0 auto 2rem auto;
+    min-height: 90vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background: linear-gradient(135deg, var(--color-fondo), var(--color-fondo-sec));
+    border-radius: 0 0 3rem 3rem;
+}
+
+.logo-hero {
+    max-width: 200px;
+    height: auto;
+    margin-bottom: 1.5rem;
+    animation: fadeInDown 1s ease;
+}
+
+#inicio h1 {
+    font-family: var(--fuente-principal);
+    font-size: var(--tamano-hero);
+    color: var(--color-primario);
+    margin-bottom: 0.25rem;
+}
+
+#inicio .eslogan {
+    font-size: 1.4rem;
+    color: var(--color-secundario);
+    font-style: italic;
+    margin-bottom: 1.5rem;
+}
+
+#inicio blockquote {
+    max-width: 600px;
+    padding: 1rem 2rem;
+    background: var(--color-claro);
+    border-radius: 1rem;
+    border-left: 6px solid var(--color-terciario);
+    margin: 0.5rem auto 2rem;
+    box-shadow: 0 4px 12px rgba(92, 61, 46, 0.06);
+}
+
+#inicio blockquote p {
+    font-size: 1.15rem;
+    font-family: var(--fuente-principal);
+    font-style: italic;
+    color: var(--color-primario);
+}
+
+#inicio blockquote cite {
+    display: block;
+    font-size: 0.9rem;
+    color: var(--color-secundario);
+    margin-top: 0.25rem;
+    font-style: normal;
+}
+
+.btn-hero {
+    display: inline-block;
+    background: var(--color-terciario);
+    color: var(--color-claro);
+    padding: 0.9rem 2.8rem;
+    border-radius: 3rem;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(198, 122, 78, 0.3);
+    font-family: var(--fuente-principal);
+    letter-spacing: 1px;
+}
+
+.btn-hero:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 8px 24px rgba(198, 122, 78, 0.4);
+    background: var(--color-primario);
+}
+
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ===== SECCIONES ===== */
+section {
+    padding: var(--espaciado-seccion);
+    max-width: 1200px;
+    margin: 0 auto;
+    scroll-margin-top: 80px;
+}
+
+h2 {
+    font-family: var(--fuente-principal);
+    font-size: 2.5rem;
+    color: var(--color-primario);
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+h2::after {
+    content: "";
+    position: absolute;
+    bottom: -8px;
+    left: 0;
+    width: 60px;
+    height: 4px;
+    background: linear-gradient(90deg, var(--color-terciario), var(--color-destacado));
+    border-radius: 2px;
+}
+
+h3 {
+    font-family: var(--fuente-principal);
+    color: var(--color-secundario);
+}
+
+/* ===== NOSOTROS ===== */
+#nosotros {
+    background: var(--color-claro);
+    border-radius: var(--borde-redondeado);
+    padding: 3rem;
+    margin-bottom: 3rem;
+    box-shadow: 0 4px 20px rgba(92, 61, 46, 0.06);
+}
+
+#nosotros p {
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+    max-width: 800px;
+}
+
+#nosotros h3 {
+    font-size: 1.8rem;
+    margin: 2rem 0 1rem;
+    color: var(--color-primario);
+}
+
+.valores {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1.5rem;
+    padding: 0.5rem 0;
+}
+
+.valores li {
+    background: var(--color-fondo-sec);
+    padding: 1.5rem;
+    border-radius: 1rem;
+    border: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.valores li:hover {
+    border-color: var(--color-terciario);
+    transform: translateY(-4px);
+}
+
+.valores .icono {
+    font-size: 2rem;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+.valores li strong {
+    display: block;
+    font-size: 1.1rem;
+    color: var(--color-primario);
+    margin-bottom: 0.3rem;
+}
+
+.valores li p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin: 0;
+}
+
+/* ===== PRODUCTOS ===== */
+#productos {
+    margin-bottom: 3rem;
+}
+
+#productos > p {
+    font-size: 1.1rem;
+    color: var(--color-texto);
+    opacity: 0.8;
+    margin-bottom: 2rem;
+}
+
+.productos-grid {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+.productos-grid li {
+    background: var(--color-claro);
+    border-radius: var(--borde-redondeado);
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(92, 61, 46, 0.06);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+    border: 2px solid transparent;
+}
+
+.productos-grid li:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 32px rgba(92, 61, 46, 0.12);
+    border-color: var(--color-destacado);
+}
+
+.productos-grid li figure {
+    margin: 0;
+}
+
+.productos-grid li img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.productos-grid li:hover img {
+    transform: scale(1.03);
+}
+
+.productos-grid li figcaption {
+    padding: 1.5rem;
+    background: var(--color-claro);
+}
+
+.productos-grid li figcaption h3 {
+    font-size: 1.2rem;
+    margin-bottom: 0.3rem;
+    color: var(--color-primario);
+}
+
+.productos-grid li figcaption p {
+    color: var(--color-texto);
+    opacity: 0.8;
+    font-size: 0.95rem;
+    margin-bottom: 0.75rem;
+}
+
+.precio {
+    display: inline-block;
+    font-family: var(--fuente-principal);
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: var(--color-terciario);
+}
+
+.etiqueta {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: var(--color-fondo-sec);
+    color: var(--color-primario);
+    padding: 0.2rem 0.8rem;
+    border-radius: 2rem;
+    margin-left: 0.8rem;
+    vertical-align: middle;
+}
+
+/* ===== CONTACTO ===== */
+#contacto {
+    background: var(--color-fondo-sec);
+    border-radius: var(--borde-redondeado);
+    padding: 3rem;
+    margin-bottom: 3rem;
+}
+
+#contacto > p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+}
+
+address {
+    font-style: normal;
+    background: var(--color-claro);
+    padding: 2rem;
+    border-radius: 1rem;
+    border-left: 6px solid var(--color-terciario);
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 12px rgba(92, 61, 46, 0.06);
+}
+
+address p {
+    margin: 0.5rem 0;
+    font-size: 1.05rem;
+}
+
+address a {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+address a:hover {
+    color: var(--color-terciario);
+    text-decoration: underline;
+}
+
+.social-links {
+    list-style: none;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 0.5rem 0;
+}
+
+.social-links li a {
+    color: var(--color-primario);
+    text-decoration: none;
+    font-weight: 500;
+    padding: 0.6rem 1.8rem;
+    background: var(--color-claro);
+    border-radius: 2rem;
+    transition: all 0.3s ease;
+    display: inline-block;
+    border: 2px solid var(--color-destacado);
+}
+
+.social-links li a:hover {
+    background: var(--color-terciario);
+    color: var(--color-claro);
+    border-color: var(--color-terciario);
+    transform: scale(1.05);
+}
+
+/* ===== FOOTER ===== */
+footer {
+    background: linear-gradient(135deg, var(--color-primario), var(--color-secundario));
+    color: var(--color-claro);
+    text-align: center;
+    padding: 2.5rem 2rem;
+    border-radius: 3rem 3rem 0 0;
+}
+
+.logo-footer {
+    max-width: 80px;
+    height: auto;
+    margin-bottom: 0.75rem;
+    /* Cambia filter a: */
+    /* filter: none;  si el logo ya es blanco */
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    padding: 0.5rem;
+}
+
+
+footer p:first-of-type {
+    font-size: 1.1rem;
+    font-family: var(--fuente-principal);
+    letter-spacing: 1px;
+}
+
+.frase-footer {
+    font-style: italic;
+    font-size: 0.95rem;
+    opacity: 0.85;
+    margin: 0.75rem 0;
+}
+
+footer p:last-child {
+    margin-top: 1rem;
+}
+
+footer p:last-child a {
+    color: var(--color-claro);
+    text-decoration: none;
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+}
+
+footer p:last-child a:hover {
+    opacity: 1;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+    header {
+        padding: 0.5rem 1rem;
+    }
+
+    nav {
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+
+    .logo-nav {
+        height: 40px;
+    }
+
+    .nav-links {
+        gap: 0.5rem;
+        justify-content: center;
+    }
+
+    .nav-links a {
+        font-size: 0.85rem;
+        padding: 0.3rem 0.7rem;
+    }
+
+    #inicio {
+        padding: 7rem 1.5rem 4rem;
+        min-height: 80vh;
+    }
+
+    .logo-hero {
+        max-width: 140px;
+    }
+
+    #inicio h1 {
+        font-size: 2.5rem;
+    }
+
+    #inicio .eslogan {
+        font-size: 1.1rem;
+    }
+
+    #inicio blockquote p {
+        font-size: 1rem;
+    }
+
+    section {
+        padding: 2.5rem 1.25rem;
+        scroll-margin-top: 120px;
+    }
+
+    h2 {
+        font-size: 2rem;
+    }
+
+    #nosotros {
+        padding: 2rem 1.25rem;
+    }
+
+    .valores {
+        grid-template-columns: 1fr;
+    }
+
+    .productos-grid {
+        grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+        gap: 1.25rem;
+    }
+
+    .productos-grid li img {
+        height: 200px;
+    }
+
+    #contacto {
+        padding: 2rem 1.25rem;
+    }
+
+    .social-links {
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .nav-links a {
+        font-size: 0.75rem;
+        padding: 0.2rem 0.5rem;
+    }
+
+    #inicio h1 {
+        font-size: 2rem;
+    }
+
+    .productos-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .productos-grid li img {
+        height: 240px;
+    }
+
+    .social-links li a {
+        width: 100%;
+        text-align: center;
+    }
+
+    .logo-hero {
+        max-width: 100px;
+    }
+}
