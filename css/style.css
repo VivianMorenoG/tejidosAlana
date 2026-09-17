@@ -25,6 +25,9 @@
     --fuente-secundaria: 'Segoe UI', Roboto, sans-serif;
     --tamano-hero: clamp(2.5rem, 8vw, 4.5rem);
 
+    --fuente-titulo: var(--fuente-principal);
+    --fuente-texto:  var(--fuente-secundaria);
+
     /* ===== ESPACIADO ===== */
     --espaciado-seccion: 5rem 2rem;
     --borde-redondeado: 1.5rem;
@@ -62,6 +65,8 @@ h1, h2, h3, h4 {
 }
 
 h2 {
+    font-family: var(--fuente-principal);   /* ← Añadido */
+    color: var(--color-primario);           /* ← Añadido */
     font-size: 2.5rem;
     margin-bottom: 1.5rem;
     position: relative;
