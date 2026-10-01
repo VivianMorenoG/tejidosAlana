@@ -1,15 +1,9 @@
-/* ============================================
-   TEJIDOS ALANA — HOJA DE ESTILOS COMPLETA
-   Paleta de 5 colores extraída del logo
-   ============================================ */
-/*Formateo de la pagina*/
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
+/* *============================================
+   *TEJIDOS ALANA — HOJA DE ESTILOS COMPLETA
+   *Paleta de 5 colores extraída del logo
+   *============================================ */
 
-/* ===== VARIABLES GLOBALES ===== */
+ /*! 1.Variables Globales*/
 :root {
   /* ===== PALETA DE 5 COLORES ===== */
   --color-marron-profundo: #5c3d2e; /* Textos y títulos principales */
@@ -41,7 +35,7 @@
   --sombra-hover: 0 12px 32px rgba(92, 61, 46, 0.15);
 }
 
-/* ===== RESET / BOX MODEL MODERNO ===== */
+/*! 2. RESET / BOX MODEL MODERNO ===== */
 *,
 *::before,
 *::after {
@@ -49,10 +43,10 @@
   padding: 0;
   box-sizing: border-box;
 }
-
+/*! 3. Configuración general del documento */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 70px;
+  scroll-padding-top: 5rem;  /* ← Igualar con scroll-margin-top */
 }
 
 body {
@@ -63,7 +57,7 @@ body {
   min-height: 100vh;
 }
 
-/* ===== TIPOGRAFÍA GENERAL ===== */
+/*! 4. TIPOGRAFÍA GENERAL */
 h1,
 h2,
 h3,
@@ -105,7 +99,7 @@ h3 {
 p {
   margin-bottom: 1rem;
 }
-
+/*! 5. Enlaces*/
 a {
   color: var(--color-acento);
   text-decoration: none;
@@ -122,7 +116,7 @@ img {
   display: block;
 }
 
-/* ===== HEADER FIJO ===== */
+/*! 6. HEADER FIJO + NAVEGACIÓN*/
 header {
   background: var(--color-crema);
   padding: 0.75rem 2rem;
@@ -198,7 +192,7 @@ header {
     }
   }
 }
-/* ===== HERO ===== */
+/*! 7. HERO ===== */
 .hero {
   text-align: center;
   padding: 9rem 2rem 5rem;
@@ -299,16 +293,15 @@ header {
   }
 }
 
-/* ===== SECCIONES ===== */
+/*! 8. CONTENEDOR Y ESTRUCTURA (section) */
 section {
-  padding: var(--espaciado-seccion);
+  padding: var(--espaciado-seccion); /*es lo mismo que padding: 5rem 2rem; /* no ayuda a que no detrás del menú*/
   width: 100%;
-  min-height: 100vh;
-  padding-top: 100px;
+  min-height: 100vh; /*mínimo de alto de la sección */
   margin: 0 auto;
-  scroll-margin-top: 70px;
+  scroll-margin-top: 5rem; /* no ayuda a que no detrás del menú*/
 }
-
+/*! 9. SECCIONES DE LA ONE-PAGE*/
 /* ===== NOSOTROS ===== */
 #nosotros {
   background-color: var(--color-crema);
@@ -316,7 +309,6 @@ section {
   padding: 3rem;
   margin-bottom: 3rem;
   box-shadow: var(--sombra-suave);
-  padding-top: 100px;
 }
 
 #nosotros p {
@@ -385,7 +377,7 @@ section {
 .productos-grid {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 2rem;
 }
 
@@ -411,8 +403,8 @@ section {
 }
 
 .productos-grid li img {
-  width: 100%;
-  height: 260px;
+  width: 100%; /* Sin alto fijo */
+  aspect-ratio: 4 / 3; /* ← Cambiado Sin alto fijo */
   object-fit: cover;
   transition: transform 0.4s ease;
   background: var(--color-beige-calido);
@@ -524,7 +516,76 @@ address a:hover {
   transform: scale(1.05);
 }
 
-/* ===== FOOTER ===== */
+/*! 10. Botones ===== BOTÓN MÁS INFORMACIÓN*/
+.btn-info {
+  display: inline-block;
+  margin-top: 1rem;
+  padding: 0.6rem 1.5rem;
+  background-color: var(--color-acento); /* Terracota #C67A4E */
+  color: #ffffff; /* Blanco puro*/
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.95rem;
+  border-radius: 2rem;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(198, 122, 78, 0.25); /* Sombra terracota */
+  font-family: var(--fuente-secundaria);
+  letter-spacing: 0.5px;
+  text-align: center;
+  width: 100%;
+  box-sizing: border-box;
+  border: 2px solid var(--color-acento);
+}
+
+.btn-info:hover {
+  background-color: var(--color-primario); /* Marrón profundo #5C3D2E */
+  color: var(--color-crema);
+  border-color: var(--color-primario);
+  transform: translateY(-3px);
+  box-shadow: 0 8px 20px rgba(92, 61, 46, 0.35); /* Sombra marrón */
+}
+
+.btn-info:active {
+  transform: translateY(-1px);
+}
+
+/* ===== BOTÓN FLOTANTE "VOLVER ARRIBA" ===== */
+.btn-top {
+  position: fixed;
+  bottom: 2rem;
+  right: 2rem;
+  width: 50px;
+  height: 50px;
+  background: var(--color-acento);
+  color: var(--color-crema);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  text-decoration: none;
+  box-shadow: 0 4px 16px rgba(198, 122, 78, 0.35);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(20px);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.btn-top.visible {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.btn-top:hover {
+  background: var(--color-primario);
+  color: var(--color-crema);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 24px rgba(92, 61, 46, 0.35);
+}
+
+/*! 11. FOOTER */
 footer {
   background: linear-gradient(
     135deg,
@@ -571,7 +632,8 @@ footer p:last-child a:hover {
   opacity: 1;
 }
 
-/* ===== RESPONSIVE ===== */
+/*! 12. Diseño  RESPONSIVE ===== */
+/* ===== Tablet (768px) ===== */
 @media (max-width: 768px) {
   header {
     padding: 0.5rem 1rem;
@@ -608,39 +670,32 @@ footer p:last-child a:hover {
   .hero h1 {
     font-size: 2.5rem;
   }
-
   .eslogan {
     font-size: 1.1rem;
   }
-
   .hero blockquote p {
     font-size: 1rem;
   }
-
   section {
     padding: 2.5rem 1.25rem;
     scroll-margin-top: 130px;
   }
-
   h2 {
     font-size: 2rem;
   }
-
   #nosotros {
     padding: 2rem 1.25rem;
   }
-
   .valores {
     grid-template-columns: 1fr;
   }
-
   .productos-grid {
-    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.25rem;
   }
 
   .productos-grid li img {
-    height: 200px;
+    aspect-ratio: 4 / 3;
   }
 
   #contacto {
@@ -651,7 +706,7 @@ footer p:last-child a:hover {
     justify-content: center;
   }
 }
-
+/* ===== Móvil (480px) ===== */
 @media (max-width: 480px) {
   .nav-links a {
     font-size: 0.75rem;
@@ -671,91 +726,19 @@ footer p:last-child a:hover {
   }
 
   .productos-grid li img {
-    height: 240px;
+    aspect-ratio: 4 / 3;
   }
 
   .social-links li a {
     width: 100%;
     text-align: center;
   }
-}
-/* ===== BOTÓN MÁS INFORMACIÓN (paleta Tejidos Alana) ===== */
-.btn-info {
-  display: inline-block;
-  margin-top: 1rem;
-  padding: 0.6rem 1.5rem;
-  background-color: var(--color-acento); /* Terracota #C67A4E */
-  color: #ffffff; /* Blanco puro*/
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.95rem;
-  border-radius: 2rem;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 12px rgba(198, 122, 78, 0.25); /* Sombra terracota */
-  font-family: var(--fuente-secundaria);
-  letter-spacing: 0.5px;
-  text-align: center;
-  width: 100%;
-  box-sizing: border-box;
-  border: 2px solid var(--color-acento);
-}
 
-.btn-info:hover {
-  background-color: var(--color-primario); /* Marrón profundo #5C3D2E */
-  color: var(--color-crema);
-  border-color: var(--color-primario);
-  transform: translateY(-3px);
-  box-shadow: 0 8px 20px rgba(92, 61, 46, 0.35); /* Sombra marrón */
-}
-
-.btn-info:active {
-  transform: translateY(-1px);
-}
-
-@media (max-width: 480px) {
   .btn-info {
     font-size: 0.9rem;
     padding: 0.55rem 1.2rem;
   }
-}
-/* ===== BOTÓN FLOTANTE "VOLVER ARRIBA" ===== */
-.btn-top {
-  position: fixed;
-  bottom: 2rem;
-  right: 2rem;
-  width: 50px;
-  height: 50px;
-  background: var(--color-acento);
-  color: var(--color-crema);
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.5rem;
-  text-decoration: none;
-  box-shadow: 0 4px 16px rgba(198, 122, 78, 0.35);
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(20px);
-  transition: all 0.3s ease;
-  z-index: 999;
-}
 
-.btn-top.visible {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0);
-}
-
-.btn-top:hover {
-  background: var(--color-primario);
-  color: var(--color-crema);
-  transform: translateY(-5px);
-  box-shadow: 0 8px 24px rgba(92, 61, 46, 0.35);
-}
-
-/* Ajuste responsive */
-@media (max-width: 480px) {
   .btn-top {
     width: 44px;
     height: 44px;
