@@ -325,7 +325,7 @@ section {
 .valores {
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;
   padding: 0.5rem 0;
 }
@@ -633,7 +633,7 @@ footer p:last-child a:hover {
 }
 
 /*! 12. Diseño  RESPONSIVE ===== */
-/* ===== Tablet (768px) ===== */
+/* /* Breakpoint 768px: cuando el nav de 4 enlaces + logo  */
 @media (max-width: 768px) {
   header {
     padding: 0.5rem 1rem;
@@ -706,7 +706,7 @@ footer p:last-child a:hover {
     justify-content: center;
   }
 }
-/* ===== Móvil (480px) ===== */
+/* ===== /* Breakpoint 480px: cuando el nav de 4 enlaces + logo  */
 @media (max-width: 480px) {
   .nav-links a {
     font-size: 0.75rem;
