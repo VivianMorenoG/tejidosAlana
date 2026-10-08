@@ -77,10 +77,42 @@ const gestionarScroll = (btn) => {
 // No aplica todavía (se hará en el Día 14)
 
 /* =====================================================
-   6. NAVEGACIÓN
+   6. NAVEGACIÓN — MENÚ MÓVIL
    ===================================================== */
 
-// No aplica todavía (se hará en el Día 13)
+document.addEventListener('DOMContentLoaded', () => {
+    // Seleccionar los elementos
+    const btnMenu = document.querySelector('#btn-menu');
+    const menuPrincipal = document.querySelector('#menu-principal');
+
+    // Comprobar que existen
+    if (btnMenu && menuPrincipal) {
+        console.log('Menú móvil: elementos encontrados ✅');
+
+        // Función para alternar el menú
+        const alternarMenu = () => {
+            const abierto = menuPrincipal.classList.toggle('activo');
+            btnMenu.setAttribute('aria-expanded', abierto);
+            console.log('Menú:', abierto ? 'abierto ✅' : 'cerrado ❌');
+        };
+
+        // Evento click en el botón
+        btnMenu.addEventListener('click', alternarMenu);
+
+        // Cerrar el menú al hacer clic en un enlace (solo en móvil)
+        const enlacesMenu = menuPrincipal.querySelectorAll('a');
+        enlacesMenu.forEach((enlace) => {
+            enlace.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    menuPrincipal.classList.remove('activo');
+                    btnMenu.setAttribute('aria-expanded', 'false');
+                    console.log('Menú cerrado al hacer clic en un enlace ✅');
+                }
+            });
+        });
+    }
+});
+
 
 /* =====================================================
    7. MODALES

@@ -3,7 +3,7 @@
    *Paleta de 5 colores extraída del logo
    *============================================ */
 
- /*! 1.Variables Globales*/
+/*! 1.Variables Globales*/
 :root {
   /* ===== PALETA DE 5 COLORES ===== */
   --color-marron-profundo: #5c3d2e; /* Textos y títulos principales */
@@ -46,7 +46,7 @@
 /*! 3. Configuración general del documento */
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 5rem;  /* ← Igualar con scroll-margin-top */
+  scroll-padding-top: 5rem; /* ← Igualar con scroll-margin-top */
 }
 
 body {
@@ -150,9 +150,9 @@ header {
           transform: scale(1.05);
         }
         &:focus-visible {
-        outline: 3px solid var(--color-acento);
-        outline-offset: 3px;
-        border-radius: 0.5rem;
+          outline: 3px solid var(--color-acento);
+          outline-offset: 3px;
+          border-radius: 0.5rem;
         }
       }
     }
@@ -175,23 +175,46 @@ header {
         font-family: var(--fuente-principal);
         letter-spacing: 0.5px;
 
-        &:hover {  /* ← AÑADIDO */
+        &:hover {
+          /* ← AÑADIDO */
           background-color: var(--color-primario);
           color: var(--color-crema);
           transform: translateY(-2px);
         }
-        
-        &:focus-visible { /* ← AÑADIDO */
-            outline: 3px solid var(--color-acento);
-            outline-offset: 3px;
-            background-color: var(--color-beige-calido);
-            color: var(--color-primario);
-            border-radius: 2rem;
+
+        &:focus-visible {
+          /* ← AÑADIDO */
+          outline: 3px solid var(--color-acento);
+          outline-offset: 3px;
+          background-color: var(--color-beige-calido);
+          color: var(--color-primario);
+          border-radius: 2rem;
         }
       }
     }
   }
+  /* AQUÍ VA EL BOTÓN DE MENÚ MÓVIL */
+  .btn-menu {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    color: var(--color-primario);
+    cursor: pointer;
+    padding: 0.5rem;
+
+    &:hover {
+      color: var(--color-acento);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-acento);
+      outline-offset: 3px;
+      border-radius: 0.5rem;
+    }
+  }
 }
+
 /*! 7. HERO ===== */
 .hero {
   text-align: center;
@@ -295,7 +318,9 @@ header {
 
 /*! 8. CONTENEDOR Y ESTRUCTURA (section) */
 section {
-  padding: var(--espaciado-seccion); /*es lo mismo que padding: 5rem 2rem; /* no ayuda a que no detrás del menú*/
+  padding: var(
+    --espaciado-seccion
+  ); /*es lo mismo que padding: 5rem 2rem; /* no ayuda a que no detrás del menú*/
   width: 100%;
   min-height: 100vh; /*mínimo de alto de la sección */
   margin: 0 auto;
@@ -632,70 +657,96 @@ footer p:last-child a:hover {
   opacity: 1;
 }
 
-/*! 12. Diseño  RESPONSIVE ===== */
-/* /* Breakpoint 768px: cuando el nav de 4 enlaces + logo  */
+/*! 12. Diseño RESPONSIVE ===== */
 @media (max-width: 768px) {
   header {
     padding: 0.5rem 1rem;
-  }
 
-  nav {
-    flex-direction: column;
-    gap: 0.5rem;
-  }
+    /* Botón de menú móvil */
+    .btn-menu {
+      display: block;
+    }
 
-  .logo-nav {
-    height: 42px;
-  }
+    nav {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+      gap: 0.5rem;
 
-  .nav-links {
-    gap: 0.5rem;
-    justify-content: center;
-  }
+      .logo-nav {
+        height: 42px;
+      }
 
-  .nav-links a {
-    font-size: 0.85rem;
-    padding: 0.3rem 0.7rem;
+      /* ===== MENÚ OCULTO POR DEFECTO ===== */
+      .nav-links {
+        display: none;
+        flex-direction: column;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 1rem 0;
+        text-align: center;
+        background: var(--color-crema);
+
+        /* ===== MENÚ ABIERTO ===== */
+        &.activo {
+          display: flex;
+        }
+
+        a {
+          font-size: 0.85rem;
+          padding: 0.3rem 0.7rem;
+        }
+      }
+    }
   }
 
   .hero {
     padding: 7rem 1.5rem 4rem;
     min-height: 80vh;
+
+    .logo-hero {
+      max-width: 150px;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+    }
+
+    .eslogan {
+      font-size: 1.1rem;
+      letter-spacing: 0;
+    }
+
+    blockquote p {
+      font-size: 1rem;
+    }
   }
 
-  .logo-hero {
-    max-width: 150px;
-  }
-
-  .hero h1 {
-    font-size: 2.5rem;
-  }
-  .eslogan {
-    font-size: 1.1rem;
-  }
-  .hero blockquote p {
-    font-size: 1rem;
-  }
   section {
     padding: 2.5rem 1.25rem;
     scroll-margin-top: 130px;
   }
+
   h2 {
     font-size: 2rem;
   }
+
   #nosotros {
     padding: 2rem 1.25rem;
   }
+
   .valores {
     grid-template-columns: 1fr;
   }
+
   .productos-grid {
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 1.25rem;
-  }
 
-  .productos-grid li img {
-    aspect-ratio: 4 / 3;
+    li img {
+      aspect-ratio: 4 / 3;
+    }
   }
 
   #contacto {
