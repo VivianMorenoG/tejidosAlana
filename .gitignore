@@ -1,0 +1,10 @@
+# Sistema operativo
+.DS_Store
+Thumbs.db
+
+# Editor de código
+.vscode/
+
+# Archivos temporales
+*.tmp
+*.bak
