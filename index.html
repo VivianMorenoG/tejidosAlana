@@ -313,6 +313,98 @@
           <p>🕐 Lunes a Viernes: 9:00 - 16:00</p>
         </address>
 
+        <!-- ===== FORMULARIO DE CONTACTO ===== -->
+        <form id="formulario-contacto" action="#" method="post" novalidate>
+          <h3>Envíanos un mensaje</h3>
+
+          <!-- Campo: Nombre -->
+          <p>
+            <label for="nombre">Nombre completo *</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              required
+              minlength="2"
+              maxlength="50"
+              autocomplete="name"
+              placeholder="Ej: María Pérez"
+              title="El nombre debe tener entre 2 y 50 caracteres"
+            />
+          </p>
+
+          <!-- Campo: Correo -->
+          <p>
+            <label for="correo">Correo electrónico *</label>
+            <input
+              type="email"
+              id="correo"
+              name="correo"
+              required
+              autocomplete="email"
+              placeholder="Ej: maria@ejemplo.com"
+              title="Ingresa un correo válido (ej: nombre@dominio.com)"
+            />
+          </p>
+
+          <!-- Campo: Teléfono -->
+          <p>
+            <label for="telefono">Teléfono *</label>
+            <input
+              type="tel"
+              id="telefono"
+              name="telefono"
+              required
+              pattern="[0-9]{8}"
+              maxlength="8"
+              autocomplete="tel-national"
+              placeholder="Ej: 86587221"
+              title="El teléfono debe tener 8 dígitos (sin guiones ni espacios)"
+            />
+            <small class="ayuda-campo">Formato: 8 dígitos sin espacios (ej: 86587221)</small>
+          </p>
+
+          <!-- Campo: Provincia (ARRIBA DEL MENSAJE) -->
+          <p>
+            <label for="provincia">Provincia *</label>
+            <select
+              id="provincia"
+              name="provincia"
+              required
+              title="Selecciona tu provincia"
+            >
+              <option value="">-- Selecciona tu provincia --</option>
+              <option value="san-jose">San José</option>
+              <option value="alajuela">Alajuela</option>
+              <option value="cartago">Cartago</option>
+              <option value="heredia">Heredia</option>
+              <option value="guanacaste">Guanacaste</option>
+              <option value="puntarenas">Puntarenas</option>
+              <option value="limon">Limón</option>
+            </select>
+          </p>
+
+          <!-- Campo: Mensaje -->
+          <p>
+            <label for="mensaje">Mensaje *</label>
+            <textarea
+              id="mensaje"
+              name="mensaje"
+              required
+              minlength="10"
+              maxlength="500"
+              rows="5"
+              placeholder="Cuéntanos qué producto te interesa..."
+              title="El mensaje debe tener entre 10 y 500 caracteres"
+            ></textarea>
+          </p>
+
+          <!-- Botón de envío -->
+          <p>
+            <button type="submit" class="btn-enviar">Enviar mensaje</button>
+          </p>
+        </form>
+
         <p>Síguenos en redes sociales</p>
         <ul class="social-links">
           <li>

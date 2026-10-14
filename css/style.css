@@ -798,3 +798,133 @@ footer p:last-child a:hover {
     right: 1.5rem;
   }
 }
+
+/*! 13. FORMULARIO DE CONTACTO */
+#formulario-contacto {
+  background: var(--color-crema);
+  padding: 2rem;
+  border-radius: var(--borde-redondeado);
+  margin-bottom: 2rem;
+  box-shadow: var(--sombra-suave);
+
+  h3 {
+    color: var(--color-primario);
+    margin-bottom: 1.5rem;
+    font-family: var(--fuente-principal);
+  }
+
+  p {
+    margin-bottom: 1.25rem;
+  }
+
+  label {
+    display: block;
+    font-weight: 600;
+    color: var(--color-primario);
+    margin-bottom: 0.5rem;
+    font-size: 0.95rem;
+  }
+
+  input,
+  textarea,
+  select {
+    width: 100%;
+    padding: 0.75rem 1rem;
+    border: 2px solid var(--color-beige-calido);
+    border-radius: 0.75rem;
+    font-family: var(--fuente-secundaria);
+    font-size: 1rem;
+    background: var(--color-crema);
+    color: var(--color-texto);
+    transition: border-color 0.3s ease;
+
+    &:focus {
+      outline: none;
+      border-color: var(--color-acento);
+      box-shadow: 0 0 0 3px rgba(198, 122, 78, 0.15);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-acento);
+      outline-offset: 3px;
+    }
+  }
+
+  /* Estilo específico para el select */
+  select {
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%235c3d2e' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 1rem center;
+    background-size: 12px;
+    padding-right: 2.5rem;
+  }
+
+  /* Texto de ayuda */
+  .ayuda-campo {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-secundario);
+    margin-top: 0.4rem;
+    font-style: italic;
+  }
+
+  textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .btn-enviar {
+    display: inline-block;
+    background-color: var(--color-acento);
+    color: #ffffff;
+    padding: 0.9rem 2.5rem;
+    border: none;
+    border-radius: 3rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    font-family: var(--fuente-principal);
+    letter-spacing: 1px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 16px rgba(198, 122, 78, 0.35);
+
+    &:hover {
+      background-color: var(--color-primario);
+      transform: translateY(-3px) scale(1.03);
+      box-shadow: 0 8px 24px rgba(92, 61, 46, 0.35);
+    }
+
+    &:focus-visible {
+      outline: 3px solid var(--color-primario);
+      outline-offset: 3px;
+    }
+  }
+
+  /* Estados de validación */
+  input:invalid:not(:placeholder-shown),
+  textarea:invalid:not(:placeholder-shown),
+  select:invalid {
+    border-color: #c0392b;
+  }
+
+  input:valid:not(:placeholder-shown),
+  textarea:valid:not(:placeholder-shown),
+  select:valid {
+    border-color: #27ae60;
+  }
+}
+
+@media (max-width: 480px) {
+  #formulario-contacto {
+    padding: 1.5rem;
+
+    .btn-enviar {
+      width: 100%;
+      text-align: center;
+    }
+  }
+}
