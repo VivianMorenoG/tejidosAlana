@@ -807,21 +807,30 @@ footer p:last-child a:hover {
   margin-bottom: 2rem;
   box-shadow: var(--sombra-suave);
 
+  display: grid;
+  gap: 1.25rem;
+
   h3 {
     color: var(--color-primario);
-    margin-bottom: 1.5rem;
+    margin-bottom: 0.5rem;
     font-family: var(--fuente-principal);
   }
 
-  p {
-    margin-bottom: 1.25rem;
+  > p:first-of-type {
+    margin-bottom: 0.5rem;
+    color: var(--color-secundario);
+    font-size: 0.95rem;
+  }
+
+  /* Cada campo */
+  .campo {
+    display: grid;
+    gap: 0.5rem;
   }
 
   label {
-    display: block;
     font-weight: 600;
     color: var(--color-primario);
-    margin-bottom: 0.5rem;
     font-size: 0.95rem;
   }
 
@@ -836,7 +845,7 @@ footer p:last-child a:hover {
     font-size: 1rem;
     background: var(--color-crema);
     color: var(--color-texto);
-    transition: border-color 0.3s ease;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
 
     &:focus {
       outline: none;
@@ -850,7 +859,7 @@ footer p:last-child a:hover {
     }
   }
 
-  /* Estilo específico para el select */
+  /* Select */
   select {
     cursor: pointer;
     -webkit-appearance: none;
@@ -863,20 +872,44 @@ footer p:last-child a:hover {
     padding-right: 2.5rem;
   }
 
-  /* Texto de ayuda */
-  .ayuda-campo {
-    display: block;
-    font-size: 0.8rem;
-    color: var(--color-secundario);
-    margin-top: 0.4rem;
-    font-style: italic;
-  }
-
   textarea {
     resize: vertical;
     min-height: 120px;
   }
 
+  /* Texto de ayuda */
+  .ayuda {
+    display: block;
+    font-size: 0.8rem;
+    color: var(--color-secundario);
+    font-style: italic;
+  }
+
+  /* Mensaje de error */
+  .error {
+    display: block;
+    font-size: 0.85rem;
+    color: #b42318;
+    font-weight: 500;
+    min-height: 1rem;
+  }
+
+  /* Estado inválido */
+  input[aria-invalid="true"],
+  textarea[aria-invalid="true"],
+  select[aria-invalid="true"] {
+    border-color: #b42318;
+    border-width: 2px;
+  }
+
+  /* Estado válido */
+  input[aria-invalid="false"]:not(:placeholder-shown),
+  textarea[aria-invalid="false"]:not(:placeholder-shown),
+  select[aria-invalid="false"] {
+    border-color: #27ae60;
+  }
+
+  /* Botón */
   .btn-enviar {
     display: inline-block;
     background-color: var(--color-acento);
@@ -891,10 +924,11 @@ footer p:last-child a:hover {
     cursor: pointer;
     transition: all 0.3s ease;
     box-shadow: 0 4px 16px rgba(198, 122, 78, 0.35);
+    width: 100%;
 
     &:hover {
       background-color: var(--color-primario);
-      transform: translateY(-3px) scale(1.03);
+      transform: translateY(-3px) scale(1.02);
       box-shadow: 0 8px 24px rgba(92, 61, 46, 0.35);
     }
 
@@ -904,27 +938,36 @@ footer p:last-child a:hover {
     }
   }
 
-  /* Estados de validación */
-  input:invalid:not(:placeholder-shown),
-  textarea:invalid:not(:placeholder-shown),
-  select:invalid {
-    border-color: #c0392b;
-  }
+  /* Estado del formulario */
+  #estado-formulario {
+    padding: 0.75rem 1rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    text-align: center;
+    margin: 0;
 
-  input:valid:not(:placeholder-shown),
-  textarea:valid:not(:placeholder-shown),
-  select:valid {
-    border-color: #27ae60;
+    &:empty {
+      display: none;
+    }
+
+    &.exito {
+      background-color: #d4edda;
+      color: #155724;
+      border: 2px solid #27ae60;
+    }
+
+    &.aviso {
+      background-color: #fff3cd;
+      color: #856404;
+      border: 2px solid #f0ad4e;
+    }
   }
 }
 
-@media (max-width: 480px) {
+@media (min-width: 768px) {
   #formulario-contacto {
-    padding: 1.5rem;
-
     .btn-enviar {
-      width: 100%;
-      text-align: center;
+      width: auto;
     }
   }
 }

@@ -68,7 +68,7 @@ const gestionarScroll = (btn) => {
 // Ninguno por ahora (los eventos están en las funciones)
 
 /* =====================================================
-   5. FORMULARIOS — VALIDACIÓN
+   5. FORMULARIOS — VALIDACIÓN SEGURA
    ===================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -77,63 +77,185 @@ document.addEventListener('DOMContentLoaded', () => {
     if (formulario) {
         console.log('Formulario encontrado ✅');
 
+        // ===== SELECCIÓN DE ELEMENTOS =====
+        const nombre = document.querySelector('#nombre');
+        const correo = document.querySelector('#correo');
+        const telefono = document.querySelector('#telefono');
+        const provincia = document.querySelector('#provincia');
+        const mensaje = document.querySelector('#mensaje');
+        const estado = document.querySelector('#estado-formulario');
+
+        // ===== FUNCIÓN: ESTABLECER ERROR =====
+        const establecerError = (campo, elementoError, texto) => {
+            campo.setCustomValidity(texto);
+            campo.setAttribute('aria-invalid', texto ? 'true' : 'false');
+            elementoError.textContent = texto;
+        };
+
+        // ===== VALIDAR NOMBRE =====
+        const validarNombre = () => {
+            const valor = nombre.value.trim();
+            let error = '';
+
+            if (valor.length === 0) {
+                error = 'Escriba su nombre.';
+            } else if (valor.length < 2) {
+                error = 'El nombre debe tener al menos 2 caracteres.';
+            } else if (valor.length > 80) {
+                error = 'El nombre no puede superar 80 caracteres.';
+            } else if (/[\u0000-\u001F\u007F]/u.test(valor)) {
+                error = 'El nombre contiene caracteres no permitidos.';
+            }
+
+            establecerError(nombre, document.querySelector('#error-nombre'), error);
+            return error === '';
+        };
+
+        // ===== VALIDAR CORREO =====
+        const validarCorreo = () => {
+            const valor = correo.value.trim();
+            let error = '';
+
+            if (valor.length === 0) {
+                error = 'Escriba su correo electrónico.';
+            } else if (valor.length > 254) {
+                error = 'El correo no puede superar 254 caracteres.';
+            } else if (/[\s\u0000-\u001F\u007F]/u.test(valor)) {
+                error = 'El correo no puede contener espacios.';
+            } else if (!correo.validity.valid) {
+                error = 'Revise el formato del correo electrónico.';
+            } else {
+                const partes = valor.split('@');
+                if (partes.length !== 2) {
+                    error = 'Introduzca una sola dirección de correo.';
+                } else {
+                    const [usuario, dominio] = partes;
+                    const etiquetas = dominio.split('.');
+
+                    if (
+                        usuario.length > 64 ||
+                        usuario.startsWith('.') ||
+                        usuario.endsWith('.') ||
+                        usuario.includes('..')
+                    ) {
+                        error = 'Revise la parte del correo anterior a la arroba.';
+                    } else if (
+                        etiquetas.length < 2 ||
+                        etiquetas.some(
+                            (etiqueta) =>
+                                etiqueta.length === 0 ||
+                                etiqueta.length > 63 ||
+                                !/^[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(etiqueta)
+                        )
+                    ) {
+                        error = 'Introduzca un dominio de correo válido.';
+                    }
+                }
+            }
+
+            establecerError(correo, document.querySelector('#error-correo'), error);
+            return error === '';
+        };
+
+        // ===== VALIDAR TELÉFONO =====
+        const validarTelefono = () => {
+            const valor = telefono.value.trim();
+            let error = '';
+
+            if (valor.length === 0) {
+                error = 'Escriba su teléfono.';
+            } else if (!/^[0-9]{8}$/.test(valor)) {
+                error = 'El teléfono debe tener 8 dígitos (sin espacios).';
+            }
+
+            establecerError(telefono, document.querySelector('#error-telefono'), error);
+            return error === '';
+        };
+
+        // ===== VALIDAR PROVINCIA =====
+        const validarProvincia = () => {
+            const valor = provincia.value;
+            let error = '';
+
+            if (valor === '') {
+                error = 'Seleccione su provincia.';
+            }
+
+            establecerError(provincia, document.querySelector('#error-provincia'), error);
+            return error === '';
+        };
+
+        // ===== VALIDAR MENSAJE =====
+        const validarMensaje = () => {
+            const valor = mensaje.value.trim();
+            let error = '';
+
+            if (valor.length === 0) {
+                error = 'Escriba su mensaje.';
+            } else if (valor.length < 10) {
+                error = 'El mensaje debe tener al menos 10 caracteres.';
+            } else if (valor.length > 1000) {
+                error = 'El mensaje no puede superar 1000 caracteres.';
+            } else if (/[\u0000-\u0008\u000B\u000C\u000E-\u001F\u007F]/u.test(valor)) {
+                error = 'El mensaje contiene caracteres no permitidos.';
+            }
+
+            establecerError(mensaje, document.querySelector('#error-mensaje'), error);
+            return error === '';
+        };
+
+        // ===== VALIDAR AL MODIFICAR LOS CAMPOS =====
+        nombre.addEventListener('input', validarNombre);
+        correo.addEventListener('input', validarCorreo);
+        telefono.addEventListener('input', validarTelefono);
+        provincia.addEventListener('change', validarProvincia);
+        mensaje.addEventListener('input', validarMensaje);
+
+        // ===== VALIDAR AL ENVIAR =====
         formulario.addEventListener('submit', (evento) => {
             evento.preventDefault();
 
-            // Validación HTML5
-            if (!formulario.checkValidity()) {
-                console.warn('⚠️ El formulario tiene errores');
+            const nombreValido = validarNombre();
+            const correoValido = validarCorreo();
+            const telefonoValido = validarTelefono();
+            const provinciaValida = validarProvincia();
+            const mensajeValido = validarMensaje();
+
+            // Si hay errores
+            if (
+                !nombreValido ||
+                !correoValido ||
+                !telefonoValido ||
+                !provinciaValida ||
+                !mensajeValido
+            ) {
+                estado.textContent = 'Revise los campos indicados antes de continuar.';
+                estado.className = 'aviso';
                 formulario.reportValidity();
+
+                // Enfocar el primer campo inválido
+                const primerInvalido = formulario.querySelector('[aria-invalid="true"]');
+                if (primerInvalido) {
+                    primerInvalido.focus();
+                }
                 return;
             }
 
-            // Obtener valores
-            const nombre = document.querySelector('#nombre').value.trim();
-            const correo = document.querySelector('#correo').value.trim();
-            const telefono = document.querySelector('#telefono').value.trim();
-            const provincia = document.querySelector('#provincia').value;
-            const mensaje = document.querySelector('#mensaje').value.trim();
+            // Éxito
+            estado.textContent = '✅ Validación correcta. Los datos están listos para la siguiente etapa.';
+            estado.className = 'exito';
 
-            // Validar teléfono (8 dígitos)
-            if (!/^[0-9]{8}$/.test(telefono)) {
-                console.warn('⚠️ El teléfono debe tener 8 dígitos');
-                alert('El teléfono debe tener 8 dígitos (sin guiones ni espacios).');
-                return;
-            }
-
-            // Validar provincia seleccionada
-            if (provincia === '') {
-                console.warn('⚠️ Debes seleccionar una provincia');
-                alert('Por favor, selecciona tu provincia.');
-                return;
-            }
-
-            // Éxito (sin mostrar datos sensibles)
-            console.log('✅ Formulario enviado correctamente');
-            console.log('Nombre:', nombre.length, 'caracteres');
-            console.log('Correo: válido');
-            console.log('Teléfono: válido (8 dígitos)');
-            console.log('Provincia seleccionada:', provincia);
-            console.log('Mensaje:', mensaje.length, 'caracteres');
-
-            // Mostrar mensaje de confirmación
-            alert(`¡Gracias, ${nombre}! Hemos recibido tu mensaje desde ${provincia.replace('-', ' ')}. Te contactaremos pronto.`);
+            // NO mostrar datos sensibles en consola
+            console.log('✅ Formulario validado correctamente');
+            console.log('Todos los campos son válidos');
 
             // Limpiar formulario
             formulario.reset();
-        });
 
-        // Validación en tiempo real
-        const campos = formulario.querySelectorAll('input, textarea, select');
-        campos.forEach((campo) => {
-            campo.addEventListener('blur', () => {
-                if (campo.validity.valid) {
-                    campo.classList.remove('error');
-                    campo.classList.add('valido');
-                } else {
-                    campo.classList.remove('valido');
-                    campo.classList.add('error');
-                }
+            // Limpiar los estados de error
+            const campos = formulario.querySelectorAll('input, textarea, select');
+            campos.forEach((campo) => {
+                campo.setAttribute('aria-invalid', 'false');
             });
         });
     }
