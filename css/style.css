@@ -1,24 +1,24 @@
-/* *============================================
-   *TEJIDOS ALANA — HOJA DE ESTILOS COMPLETA
-   *Paleta de 5 colores extraída del logo
-   *============================================ */
+/* ?============================================
+   /*?TEJIDOS ALANA — HOJA DE ESTILOS COMPLETA
+   /*?Paleta de 5 colores extraída del logo
+   /*?============================================ */
 
-/*! 1.Variables Globales*/
+/** 1.Variables Globales*/
 :root {
   /* ===== PALETA DE 5 COLORES ===== */
-  --color-marron-profundo: #5c3d2e; /* Textos y títulos principales */
+  --color-negro-calido: #140E0A; /* Textos y títulos principales */
   --color-marron-medio: #8b6b4f; /* Elementos secundarios */
-  --color-terracota: #c67a4e; /* Acentos, botones y enlaces */
+  --color-durazno-palido: #E0B79F; /* Acentos, botones y enlaces */
   --color-crema: #fff9f0; /* Fondo principal */
   --color-beige-calido: #f5e6d3; /* Secciones alternas */
 
   /* ===== ALIAS ===== */
-  --color-primario: var(--color-marron-profundo);
+  --color-primario: var(--color-negro-calido);
   --color-secundario: var(--color-marron-medio);
-  --color-acento: var(--color-terracota);
+  --color-acento: var(--color-durazno-palido);
   --color-fondo: var(--color-crema);
   --color-fondo-sec: var(--color-beige-calido);
-  --color-texto: var(--color-marron-profundo);
+  --color-texto: var(--color-negro-calido);
 
   /* ===== TIPOGRAFÍA ===== */
   --fuente-principal: "Georgia", "Times New Roman", serif;
@@ -35,7 +35,7 @@
   --sombra-hover: 0 12px 32px rgba(92, 61, 46, 0.15);
 }
 
-/*! 2. RESET / BOX MODEL MODERNO ===== */
+/** 2. RESET / BOX MODEL MODERNO ===== */
 *,
 *::before,
 *::after {
@@ -57,7 +57,7 @@ body {
   min-height: 100vh;
 }
 
-/*! 4. TIPOGRAFÍA GENERAL */
+/** 4. TIPOGRAFÍA GENERAL */
 h1,
 h2,
 h3,
@@ -99,7 +99,7 @@ h3 {
 p {
   margin-bottom: 1rem;
 }
-/*! 5. Enlaces*/
+/** 5. Enlaces*/
 a {
   color: var(--color-acento);
   text-decoration: none;
@@ -116,7 +116,7 @@ img {
   display: block;
 }
 
-/*! 6. HEADER FIJO + NAVEGACIÓN*/
+/** 6. HEADER FIJO + NAVEGACIÓN*/
 header {
   background: var(--color-crema);
   padding: 0.75rem 2rem;
@@ -215,7 +215,7 @@ header {
   }
 }
 
-/*! 7. HERO ===== */
+/** 7. HERO ===== */
 .hero {
   text-align: center;
   padding: 9rem 2rem 5rem;
@@ -284,8 +284,8 @@ header {
 
   .btn-hero {
     display: inline-block;
-    background-color: var(--color-acento);
-    color: #ffffff; /*Blanco puro*/
+    background-color: var(--color-acento); /* #E0B79F - durazno */
+    color: var(--color-primario); /* #140E0A - negro cálido*/
     padding: 0.9rem 2.8rem;
     border-radius: 3rem;
     text-decoration: none;
@@ -316,7 +316,7 @@ header {
   }
 }
 
-/*! 8. CONTENEDOR Y ESTRUCTURA (section) */
+/** 8. CONTENEDOR Y ESTRUCTURA (section) */
 section {
   padding: var(
     --espaciado-seccion
@@ -326,7 +326,7 @@ section {
   margin: 0 auto;
   scroll-margin-top: 5rem; /* no ayuda a que no detrás del menú*/
 }
-/*! 9. SECCIONES DE LA ONE-PAGE*/
+/** 9. SECCIONES DE LA ONE-PAGE*/
 /* ===== NOSOTROS ===== */
 #nosotros {
   background-color: var(--color-crema);
@@ -460,7 +460,7 @@ section {
   font-family: var(--fuente-principal);
   font-size: 1.3rem;
   font-weight: 700;
-  color: var(--color-acento);
+  color: var(--color-primario); 
 }
 
 .etiqueta {
@@ -541,13 +541,13 @@ address a:hover {
   transform: scale(1.05);
 }
 
-/*! 10. Botones ===== BOTÓN MÁS INFORMACIÓN*/
+/** 10. Botones ===== BOTÓN MÁS INFORMACIÓN*/
 .btn-info {
   display: inline-block;
   margin-top: 1rem;
   padding: 0.6rem 1.5rem;
-  background-color: var(--color-acento); /* Terracota #C67A4E */
-  color: #ffffff; /* Blanco puro*/
+  background-color: var(--color-acento); /* var(--color-durazno-palido) */
+  color: var(--color-primario); /* #140E0A */
   text-decoration: none;
   font-weight: 600;
   font-size: 0.95rem;
@@ -563,7 +563,7 @@ address a:hover {
 }
 
 .btn-info:hover {
-  background-color: var(--color-primario); /* Marrón profundo #5C3D2E */
+  background-color: var(--color-primario); /* #140E0A */
   color: var(--color-crema);
   border-color: var(--color-primario);
   transform: translateY(-3px);
@@ -582,7 +582,7 @@ address a:hover {
   width: 50px;
   height: 50px;
   background: var(--color-acento);
-  color: var(--color-crema);
+  color: var(--color-primario);
   border-radius: 50%;
   display: flex;
   align-items: center;
@@ -610,7 +610,7 @@ address a:hover {
   box-shadow: 0 8px 24px rgba(92, 61, 46, 0.35);
 }
 
-/*! 11. FOOTER */
+/** 11. FOOTER */
 footer {
   background: linear-gradient(
     135deg,
@@ -657,7 +657,7 @@ footer p:last-child a:hover {
   opacity: 1;
 }
 
-/*! 12. Diseño RESPONSIVE ===== */
+/** 12. Diseño RESPONSIVE ===== */
 @media (max-width: 768px) {
   header {
     padding: 0.5rem 1rem;
@@ -799,7 +799,7 @@ footer p:last-child a:hover {
   }
 }
 
-/*! 13. FORMULARIO DE CONTACTO */
+/** 13. FORMULARIO DE CONTACTO */
 #formulario-contacto {
   background: var(--color-crema);
   padding: 2rem;
@@ -913,7 +913,7 @@ footer p:last-child a:hover {
   .btn-enviar {
     display: inline-block;
     background-color: var(--color-acento);
-    color: #ffffff;
+    color:  var(--color-primario);     /* #140E0A */
     padding: 0.9rem 2.5rem;
     border: none;
     border-radius: 3rem;

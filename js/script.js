@@ -116,41 +116,15 @@ document.addEventListener('DOMContentLoaded', () => {
             const valor = correo.value.trim();
             let error = '';
 
+            // Regex simple y confiable para correos
+            const regexCorreo = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
             if (valor.length === 0) {
                 error = 'Escriba su correo electrónico.';
             } else if (valor.length > 254) {
                 error = 'El correo no puede superar 254 caracteres.';
-            } else if (/[\s\u0000-\u001F\u007F]/u.test(valor)) {
-                error = 'El correo no puede contener espacios.';
-            } else if (!correo.validity.valid) {
+            } else if (!regexCorreo.test(valor)) {
                 error = 'Revise el formato del correo electrónico.';
-            } else {
-                const partes = valor.split('@');
-                if (partes.length !== 2) {
-                    error = 'Introduzca una sola dirección de correo.';
-                } else {
-                    const [usuario, dominio] = partes;
-                    const etiquetas = dominio.split('.');
-
-                    if (
-                        usuario.length > 64 ||
-                        usuario.startsWith('.') ||
-                        usuario.endsWith('.') ||
-                        usuario.includes('..')
-                    ) {
-                        error = 'Revise la parte del correo anterior a la arroba.';
-                    } else if (
-                        etiquetas.length < 2 ||
-                        etiquetas.some(
-                            (etiqueta) =>
-                                etiqueta.length === 0 ||
-                                etiqueta.length > 63 ||
-                                !/^[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?$/.test(etiqueta)
-                        )
-                    ) {
-                        error = 'Introduzca un dominio de correo válido.';
-                    }
-                }
             }
 
             establecerError(correo, document.querySelector('#error-correo'), error);
@@ -242,7 +216,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
 
             // Éxito
-            estado.textContent = '✅ Validación correcta. Los datos están listos para la siguiente etapa.';
+            estado.textContent = `✅ ¡Gracias, ${nombre.value.trim()}! Hemos recibido tu mensaje. Te contactaremos pronto.`;
             estado.className = 'exito';
 
             // NO mostrar datos sensibles en consola
