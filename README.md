@@ -20,9 +20,9 @@ Tejidos Alana ofrece:
 
 | Color | Hex | Uso |
 |-------|-----|-----|
-| Marrón profundo | `#5C3D2E` | Textos y títulos |
+| Negro calido | `#140E0A` | Textos y títulos |
 | Marrón medio | `#8B6B4F` | Elementos secundarios |
-| Terracota | `#C67A4E` | Acentos y botones |
+| Durazno palido | `#E0B79F` | Acentos y botones |
 | Crema | `#FFF9F0` | Fondo principal |
 | Beige cálido | `#F5E6D3` | Secciones alternas |
 
@@ -39,19 +39,19 @@ Proyecto/
 ├── css/
 │ └── style.css
 ├── img/
-│ ├── accesorios_lapiceros.webp
-│ ├── almohadas_tejidas.webp
-│ ├── camino_de_mesa.webp
-│ ├── estuche_celular.webp
-│ ├── estuche_laptop.webp
+│ ├── almohadas-tejidas.webp
+│ ├── camino-de-mesa.webp
+│ ├── estuche-celular.webp
+│ ├── estuche-laptop.webp
 │ ├── favicon.ico
-│ ├── girasol_con_nombre.webp
-│ ├── llavero_pulpo_celeste.webp
+│ ├── girasol-con_nombre.webp
+│ ├── llavero-pulpo-celeste.webp
 │ ├── logotipo.webp
-│ ├── organizador_de_escritorio.webp
-│ └── pulpo_portalapices_amarillo.webp
+│ ├── porta-lapices.webp
+│ └── pulpo-portalapices-amarillo.webp
 ├── js/
 │ └── script.js
+├── .gitignore
 ├── index.html
 ├── REAMDE.md
 
@@ -60,6 +60,7 @@ Proyecto/
 - **Semana 1:** Fundamentos HTML y CSS
 - **Semana 2:** Estructura visual adaptable
 - **Semana 3:** JavaScript y control de versiones
+- **Semana 4:** Accesibilidad y WordPress
 
 ## 👩‍💻 Autora
 
