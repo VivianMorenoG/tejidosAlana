@@ -1,7 +1,7 @@
 /* ============================================
    TEJIDOS ALANA — SCRIPT PRINCIPAL
    Día 12: JavaScript moderno y DOM
-   Funcionalidades: diagnóstico + año dinámico + botón volver arriba
+   Funcionalidades: diagnóstico + año dinámico + botón volver arriba + Formspree
    ============================================ */
 
 /* =====================================================
@@ -61,14 +61,10 @@ const gestionarScroll = (btn) => {
     });
 };
 
-/* =====================================================
-   4. EVENTOS
-   ===================================================== */
 
-// Ninguno por ahora (los eventos están en las funciones)
 
 /* =====================================================
-   5. FORMULARIOS — VALIDACIÓN SEGURA
+   4. FORMULARIOS — VALIDACIÓN SEGURA + FORMSPREE
    ===================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -185,9 +181,9 @@ document.addEventListener('DOMContentLoaded', () => {
         provincia.addEventListener('change', validarProvincia);
         mensaje.addEventListener('input', validarMensaje);
 
-        // ===== VALIDAR AL ENVIAR =====
-        formulario.addEventListener('submit', (evento) => {
-            evento.preventDefault();
+        // ===== VALIDAR Y ENVIAR A FORMSPREE =====
+        formulario.addEventListener('submit', async (evento) => {
+            evento.preventDefault(); // Evita que la página se recargue
 
             const nombreValido = validarNombre();
             const correoValido = validarCorreo();
@@ -215,28 +211,48 @@ document.addEventListener('DOMContentLoaded', () => {
                 return;
             }
 
-            // Éxito
-            estado.textContent = `✅ ¡Gracias, ${nombre.value.trim()}! Hemos recibido tu mensaje. Te contactaremos pronto.`;
-            estado.className = 'exito';
+            // ===== SI TODO ES VÁLIDO, ENVIAMOS A FORMSPREE =====
+            estado.textContent = 'Enviando mensaje...';
+            estado.className = 'aviso';
 
-            // NO mostrar datos sensibles en consola
-            console.log('✅ Formulario validado correctamente');
-            console.log('Todos los campos son válidos');
+            try {
+                const datos = new FormData(formulario);
+                const respuesta = await fetch(formulario.action, {
+                    method: 'POST',
+                    body: datos,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
 
-            // Limpiar formulario
-            formulario.reset();
+                if (respuesta.ok) {
+                    estado.textContent = `✅ ¡Gracias, ${nombre.value.trim()}! Hemos recibido tu mensaje. Te contactaremos pronto.`;
+                    estado.className = 'exito';
+                    console.log('✅ Formulario enviado a Formspree correctamente');
+                    
+                    formulario.reset();
 
-            // Limpiar los estados de error
-            const campos = formulario.querySelectorAll('input, textarea, select');
-            campos.forEach((campo) => {
-                campo.setAttribute('aria-invalid', 'false');
-            });
+                    // Limpiar los estados de error
+                    const campos = formulario.querySelectorAll('input, textarea, select');
+                    campos.forEach((campo) => {
+                        campo.setAttribute('aria-invalid', 'false');
+                    });
+                } else {
+                    estado.textContent = '❌ Hubo un problema al enviar el mensaje. Intenta de nuevo.';
+                    estado.className = 'aviso';
+                    console.error('Error en la respuesta de Formspree:', respuesta);
+                }
+            } catch (error) {
+                estado.textContent = '❌ Error de conexión. Revisa tu internet e intenta de nuevo.';
+                estado.className = 'aviso';
+                console.error('Error de red:', error);
+            }
         });
     }
 });
 
 /* =====================================================
-   6. NAVEGACIÓN — MENÚ MÓVIL
+   5. NAVEGACIÓN — MENÚ MÓVIL
    ===================================================== */
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -287,14 +303,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 });
 
-/* =====================================================
-   7. MODALES
-   ===================================================== */
-
-// No aplica todavía
 
 /* =====================================================
-   8. INICIALIZACIÓN
+   6. INICIALIZACIÓN
    ===================================================== */
 
 // Código que se ejecuta al cargar la página
